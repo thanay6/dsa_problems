@@ -1,15 +1,61 @@
+// Two Sum
+// Difficulty: Easy
+// Topic: Array + HashMap
+// Pattern: Lookup / Complement
+// Problem Statement
 
+// Given an array of integers nums and an integer target, find two different elements in the array whose sum is equal to target.
+
+// Return the indices of those two elements.
+
+// You can assume that:
+
+// There is exactly one valid pair.
+// You cannot use the same element twice.
+// The order of the returned indices does not matter.
+// Example
+// nums = [2, 7, 11, 15]
+// target = 9
+
+
+// const twoSum = function (arr, target) {
+
+//     for (let i = 0; i < arr.length - 1; i++) {
+//         for (let j = 1; j < arr.length; j++) {
+
+//             if (arr[i] + arr[j] === target) {
+//                 return [i, j];
+//             }
+//         }
+//     }
+//     return [];
+// }
+
+//by using hash map
+
+// complement = target - arr[i]
+// and finding in map that complement is avalable and return that value and i
+// else set value in map
 const twoSum = function (arr, target) {
 
-    for (let i = 0; i < arr.length - 1; i++) {
-        for (let j = 1; j < arr.length; j++) {
+    const map = new Map();
 
-            if (arr[i] + arr[j] === target) {
-                return [i, j];
-            }
+    for (let i = 0; i < arr.length; i++) {
+
+        const complement = target - arr[i];
+
+        if (map.has(complement)) {
+
+            return [map.get(complement), i];
+
         }
+
+        map.set(arr[i], i);
+
     }
+
     return [];
+
 }
 
 console.log("===== Two Sum Test Cases =====");

@@ -8,17 +8,27 @@ const nonRepeatingChar = function (str) {
         map.set(char, (map.get(char) || 0) + 1);
     }
 
+    let char;
+
     for (let [key, value] of map) {
 
         if (value === 1) {
-            return key;
+            char = key;
+            break
         }
     }
 
-    return " "
+    for (let i = 0; i < str.length; i++) {
+        if (char === str[i]) {
+            return i;
+        }
+    }
+
+    return -1;
+
 }
 
-console.log(nonRepeatingChar("swiss"));
+console.log(nonRepeatingChar("leetcode"));
 console.log("===== Non-Repeating Character Test Cases =====");
 
 // 1. Normal case
